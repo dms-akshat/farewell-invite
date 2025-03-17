@@ -66,8 +66,8 @@ export default function RsvpForm() {
       {
         name: formData.name,
         email: formData.email,
-        attending: formData.attendance,
-        food_preference: formData.food,
+        attending: formData.attending,
+        food_preference: formData.food_preference,
         afterparty: formData.afterparty,
         alcohol: formData.alcohol,
       },
