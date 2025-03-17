@@ -5,47 +5,61 @@ import { Card, CardContent } from "@/components/ui/card"
 import { CalendarIcon, MapPinIcon, ClockIcon, AwardIcon, StarIcon } from "lucide-react"
 import Image from "next/image"
 import Confetti from "@/components/confetti"
+import Papa from "papaparse"
 
-// This would be replaced with actual API call to your backend
-const fetchUserData = async (email: string) => {
-  // Simulating API call with mock data
-  // In a real application, this would be an API call to your backend
-  const mockSeniors = {
-    "aditya.sharma@nitk.edu.in": {
-      name: "Aditya Sharma",
-      role: "Chairperson",
-      department: "Computer Science",
-    },
-    "priya.patel@nitk.edu.in": {
-      name: "Priya Patel",
-      role: "Vice Chairperson",
-      department: "Electrical Engineering",
-    },
-    "rahul.verma@nitk.edu.in": {
-      name: "Rahul Verma",
-      role: "Secretary",
-      department: "Electronics",
-    },
-    // Default user if email not found
-    default: {
-      name: "Dear Senior",
-      role: "IEEE NITK Member",
-      department: "Engineering",
-    },
-  }
+// const fetchUserData = async (email: string) => {
+//   const response = await fetch("/seniors.csv") // Ensure this file is inside /public
+//   const csvText = await response.text()
 
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 300))
+//   const { data } = Papa.parse(csvText, { header: true }) // Convert CSV to JSON
 
-  // Return user data or default if not found
-  return mockSeniors[email as keyof typeof mockSeniors] || mockSeniors.default
-}
+//   const user = data.find((row) => row.email === email)
+
+//   return user || {
+//     name: "Dear Senior",
+//     role: "IEEE NITK Member",
+//   }
+// }
+
+// // This would be replaced with actual API call to your backend
+// const fetchUserData = async (email: string) => {
+//   // Simulating API call with mock data
+//   // In a real application, this would be an API call to your backend
+//   const mockSeniors = {
+//     "aditya.sharma@nitk.edu.in": {
+//       name: "Aditya Sharma",
+//       role: "Chairperson",
+//       department: "Computer Science",
+//     },
+//     "priya.patel@nitk.edu.in": {
+//       name: "Priya Patel",
+//       role: "Vice Chairperson",
+//       department: "Electrical Engineering",
+//     },
+//     "rahul.verma@nitk.edu.in": {
+//       name: "Rahul Verma",
+//       role: "Secretary",
+//       department: "Electronics",
+//     },
+//     // Default user if email not found
+//     default: {
+//       name: "Dear Senior",
+//       role: "IEEE NITK Member",
+//       department: "Engineering",
+//     },
+//   }
+
+  // // Simulate network delay
+  // await new Promise((resolve) => setTimeout(resolve, 300))
+
+  // // Return user data or default if not found
+  // return mockSeniors[email as keyof typeof mockSeniors] || mockSeniors.default
+// }
 
 export default function InvitationCard() {
   const [userData, setUserData] = useState({
     name: "Dear Senior",
-    role: "",
-    department: "",
+    role: "IEEE NITK Member",
   })
   const [userEmail, setUserEmail] = useState("")
   const [isLoading, setIsLoading] = useState(true)
@@ -53,41 +67,41 @@ export default function InvitationCard() {
 
   // Event details
   const eventDetails = {
-    date: "May 15, 2025",
+    date: "May 28, 2025",
     time: "6:00 PM onwards",
-    venue: "NITK Main Auditorium",
-    dress: "Black Tie / Formal Attire",
+    venue: "Le Sparrow Beach Resort",
+    dress: "Award Show Attire",
     theme: "The IEEE Awards Night",
   }
 
-  useEffect(() => {
-    // In a real application, you would get the email from authentication
-    // or from URL parameters. For demo purposes, we'll simulate this.
-    const getEmailFromUrl = () => {
-      // In a real app, you might get this from the URL or a cookie
-      // For demo, we'll just return a mock email
-      return "aditya.sharma@nitk.edu.in"
-    }
+  // useEffect(() => {
+  //   // In a real application, you would get the email from authentication
+  //   // or from URL parameters. For demo purposes, we'll simulate this.
+  //   const getEmailFromUrl = () => {
+  //     // In a real app, you might get this from the URL or a cookie
+  //     // For demo, we'll just return a mock email
+  //     return "aditya.sharma@nitk.edu.in"
+  //   }
 
-    const loadUserData = async () => {
-      setIsLoading(true)
-      const email = getEmailFromUrl()
-      setUserEmail(email)
+  //   const loadUserData = async () => {
+  //     setIsLoading(true)
+  //     const email = getEmailFromUrl()
+  //     setUserEmail(email)
 
-      try {
-        const data = await fetchUserData(email)
-        setUserData(data)
-        // Show confetti after data loads
-        setTimeout(() => setShowConfetti(true), 500)
-      } catch (error) {
-        console.error("Error fetching user data:", error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
+  //     try {
+  //       const data = await fetchUserData(email)
+  //       setUserData(data)
+  //       // Show confetti after data loads
+  //       setTimeout(() => setShowConfetti(true), 500)
+  //     } catch (error) {
+  //       console.error("Error fetching user data:", error)
+  //     } finally {
+  //       setIsLoading(false)
+  //     }
+  //   }
 
-    loadUserData()
-  }, [])
+  //   loadUserData()
+  // }, [])
 
   return (
     <>
@@ -105,7 +119,7 @@ export default function InvitationCard() {
           <div className="absolute inset-0 bg-[url('/placeholder.svg?height=100&width=500')] opacity-10 bg-repeat"></div>
           <div className="flex items-center justify-center gap-2">
             <StarIcon className="h-6 w-6 text-white animate-pulse" />
-            <h2 className="text-white text-2xl md:text-3xl font-bold text-center">And the Invitation Goes To...</h2>
+            <h2 className="text-white text-2xl md:text-3xl font-bold text-center">INVITATION</h2>
             <StarIcon className="h-6 w-6 text-white animate-pulse" />
           </div>
         </div>
@@ -121,25 +135,25 @@ export default function InvitationCard() {
           ) : (
             <>
               <div className="text-center mb-8 relative z-10">
-                <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-amber-500">{userData.name}!</h3>
+                {/* <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-amber-500">{userData.name}!</h3> */}
                 <p className="text-gray-300 text-lg leading-relaxed">
                   You are cordially invited to walk the red carpet at the IEEE NITK Farewell -{" "}
-                  <span className="italic font-semibold text-amber-400">"The IEEE Awards Night"</span>. As our esteemed{" "}
-                  {userData.role}, your presence will make this star-studded evening truly special.
+                  <span className="italic font-semibold text-amber-400">"The IEEE Awards Night"</span>. As our esteemed Senior
+                  , your presence will make this star-studded evening truly special.
                 </p>
               </div>
 
               {/* Club Photo */}
               <div className="relative h-48 md:h-64 mb-8 rounded-lg overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=300&width=800"
+                  src="/full_club.jpg?height=300&width=800"
                   alt="IEEE NITK Club Photo"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4 text-center">
-                  <p className="text-white text-shadow font-medium">IEEE NITK Student Branch - Class of 2025</p>
+                  <p className="text-white text-shadow font-medium">IEEE NITK Student Branch - Batch of 2025</p>
                 </div>
               </div>
 
