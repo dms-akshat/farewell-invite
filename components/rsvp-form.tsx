@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { toast } from "@/hooks/use-toast"
 import { AwardIcon, StarIcon } from "lucide-react"
-import { supabase } from '../utils/supabase.js';
+import { supabase } from '@/lib/supabase.js';
 
 export default function RsvpForm() {
   const [formData, setFormData] = useState({
