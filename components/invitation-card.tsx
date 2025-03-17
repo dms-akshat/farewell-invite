@@ -67,7 +67,7 @@ export default function InvitationCard() {
 
   // Event details
   const eventDetails = {
-    date: "May 28, 2025",
+    date: "March 29, 2025",
     time: "6:00 PM onwards",
     venue: "Le Sparrow Beach Resort",
     dress: "Award Show Attire",
