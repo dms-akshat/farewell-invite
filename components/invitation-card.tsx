@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { CalendarIcon, MapPinIcon, ClockIcon, AwardIcon, StarIcon } from "lucide-react"
 import Image from "next/image"
 import Confetti from "@/components/confetti"
-import Papa from "papaparse"
+// import Papa from "papaparse"
 
 // const fetchUserData = async (email: string) => {
 //   const response = await fetch("/seniors.csv") // Ensure this file is inside /public
@@ -21,40 +21,40 @@ import Papa from "papaparse"
 //   }
 // }
 
-// // This would be replaced with actual API call to your backend
-// const fetchUserData = async (email: string) => {
-//   // Simulating API call with mock data
-//   // In a real application, this would be an API call to your backend
-//   const mockSeniors = {
-//     "aditya.sharma@nitk.edu.in": {
-//       name: "Aditya Sharma",
-//       role: "Chairperson",
-//       department: "Computer Science",
-//     },
-//     "priya.patel@nitk.edu.in": {
-//       name: "Priya Patel",
-//       role: "Vice Chairperson",
-//       department: "Electrical Engineering",
-//     },
-//     "rahul.verma@nitk.edu.in": {
-//       name: "Rahul Verma",
-//       role: "Secretary",
-//       department: "Electronics",
-//     },
-//     // Default user if email not found
-//     default: {
-//       name: "Dear Senior",
-//       role: "IEEE NITK Member",
-//       department: "Engineering",
-//     },
-//   }
+// This would be replaced with actual API call to your backend
+const fetchUserData = async (email: string) => {
+  // Simulating API call with mock data
+  // In a real application, this would be an API call to your backend
+  const mockSeniors = {
+    "aditya.sharma@nitk.edu.in": {
+      name: "Aditya Sharma",
+      role: "Chairperson",
+      department: "Computer Science",
+    },
+    "priya.patel@nitk.edu.in": {
+      name: "Priya Patel",
+      role: "Vice Chairperson",
+      department: "Electrical Engineering",
+    },
+    "rahul.verma@nitk.edu.in": {
+      name: "Rahul Verma",
+      role: "Secretary",
+      department: "Electronics",
+    },
+    // Default user if email not found
+    default: {
+      name: "Dear Senior",
+      role: "IEEE NITK Member",
+      department: "Engineering",
+    },
+  }
 
-  // // Simulate network delay
-  // await new Promise((resolve) => setTimeout(resolve, 300))
+  // Simulate network delay
+  await new Promise((resolve) => setTimeout(resolve, 300))
 
-  // // Return user data or default if not found
-  // return mockSeniors[email as keyof typeof mockSeniors] || mockSeniors.default
-// }
+  // Return user data or default if not found
+  return mockSeniors[email as keyof typeof mockSeniors] || mockSeniors.default
+}
 
 export default function InvitationCard() {
   const [userData, setUserData] = useState({
@@ -74,34 +74,34 @@ export default function InvitationCard() {
     theme: "The IEEE Awards Night",
   }
 
-  // useEffect(() => {
-  //   // In a real application, you would get the email from authentication
-  //   // or from URL parameters. For demo purposes, we'll simulate this.
-  //   const getEmailFromUrl = () => {
-  //     // In a real app, you might get this from the URL or a cookie
-  //     // For demo, we'll just return a mock email
-  //     return "aditya.sharma@nitk.edu.in"
-  //   }
+  useEffect(() => {
+    // In a real application, you would get the email from authentication
+    // or from URL parameters. For demo purposes, we'll simulate this.
+    const getEmailFromUrl = () => {
+      // In a real app, you might get this from the URL or a cookie
+      // For demo, we'll just return a mock email
+      return "default"
+    }
 
-  //   const loadUserData = async () => {
-  //     setIsLoading(true)
-  //     const email = getEmailFromUrl()
-  //     setUserEmail(email)
+    const loadUserData = async () => {
+      setIsLoading(true)
+      const email = getEmailFromUrl()
+      setUserEmail(email)
 
-  //     try {
-  //       const data = await fetchUserData(email)
-  //       setUserData(data)
-  //       // Show confetti after data loads
-  //       setTimeout(() => setShowConfetti(true), 500)
-  //     } catch (error) {
-  //       console.error("Error fetching user data:", error)
-  //     } finally {
-  //       setIsLoading(false)
-  //     }
-  //   }
+      try {
+        const data = await fetchUserData(email)
+        setUserData(data)
+        // Show confetti after data loads
+        setTimeout(() => setShowConfetti(true), 500)
+      } catch (error) {
+        console.error("Error fetching user data:", error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
 
-  //   loadUserData()
-  // }, [])
+    loadUserData()
+  }, [])
 
   return (
     <>
@@ -135,7 +135,7 @@ export default function InvitationCard() {
           ) : (
             <>
               <div className="text-center mb-8 relative z-10">
-                {/* <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-amber-500">{userData.name}!</h3> */}
+                <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-amber-500">{userData.name}!</h3>
                 <p className="text-gray-300 text-lg leading-relaxed">
                   You are cordially invited to walk the red carpet at the IEEE NITK Farewell -{" "}
                   <span className="italic font-semibold text-amber-400">"The IEEE Awards Night"</span>. As our esteemed Senior
