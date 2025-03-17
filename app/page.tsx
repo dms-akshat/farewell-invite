@@ -45,10 +45,10 @@ export default function Home() {
           <p className="text-amber-300 text-lg md:text-xl font-serif italic">The IEEE Awards Night</p>
 
           {/* Red carpet image */}
-          <div className="mt-6 relative h-16 md:h-20 mx-auto max-w-md overflow-hidden rounded-lg">
+          {/* <div className="mt-6 relative h-16 md:h-20 mx-auto max-w-md overflow-hidden rounded-lg">
             <Image src="/red_carpet.png?height=100&width=600" alt="Red Carpet" fill className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-transparent to-gray-900"></div>
-          </div>
+          </div> */}
         </header>
 
         <InvitationCard />
