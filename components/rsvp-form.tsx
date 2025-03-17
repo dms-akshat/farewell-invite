@@ -66,8 +66,8 @@ export default function RsvpForm() {
       {
         name: formData.name,
         email: formData.email,
-        attending: formData.attending,
-        food_preference: formData.foodPreference,
+        attending: formData.attending || "tester",
+        food_preference: formData.foodPreference || "fu",
         afterparty: formData.afterparty,
         alcohol: formData.alcohol,
       },
@@ -116,7 +116,7 @@ export default function RsvpForm() {
           RSVP
           <StarIcon className="h-5 w-5" />
         </CardTitle>
-        <CardDescription className="text-amber-100">Please respond by May 5, 2025</CardDescription>
+        <CardDescription className="text-amber-100">Please respond by March 23, 2025</CardDescription>
       </CardHeader>
 
       <CardContent className="pt-6 relative z-10">
