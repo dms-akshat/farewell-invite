@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { toast } from "@/hooks/use-toast"
 import { AwardIcon, StarIcon } from "lucide-react"
+import { createClient } from '@/utils/supabase/server';
 
 export default function RsvpForm() {
   const [formData, setFormData] = useState({
@@ -31,29 +32,75 @@ export default function RsvpForm() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   setIsSubmitting(true)
+
+  //   // Simulate form submission
+  //   setTimeout(() => {
+  //     setIsSubmitting(false)
+  //     toast({
+  //       title: "RSVP Submitted",
+  //       description: "Thank you for your response!",
+  //     })
+
+  //     // Reset form
+  //     setFormData({
+  //       name: "",
+  //       email: "",
+  //       attending: "",
+  //       foodPreference: "",
+  //       afterparty: "",
+  //       alcohol: "",
+  //     })
+  //   }, 1500)
+  // }
+
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
-      toast({
-        title: "RSVP Submitted",
-        description: "Thank you for your response!",
-      })
+    // Insert data into Supabase
+    const { error } = await supabase.from("responses").insert([
+      {
+        name: formData.name,
+        email: formData.email,
+        attending: formData.attendance,
+        food_preference: formData.food,
+        afterparty: formData.afterparty,
+        alcohol: formData.alcohol,
+      },
+    ])
 
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        attending: "",
-        foodPreference: "",
-        afterparty: "",
-        alcohol: "",
+    if (error) {
+      toast({
+        title: "Submission Failed",
+        description: error.message,
+        variant: "destructive",
       })
-    }, 1500)
+      setIsSubmitting(false)
+      return
+    }
+
+    // Success Message
+    toast({
+      title: "RSVP Submitted",
+      description: "Thank you for your response!",
+    })
+
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      attending: "",
+      foodPreference: "",
+      afterparty: "",
+      alcohol: "",
+    })
+    setIsSubmitting(false)
   }
+
 
   return (
     <Card className="w-full border-2 border-amber-500 bg-gray-900 relative overflow-hidden">
@@ -190,7 +237,7 @@ export default function RsvpForm() {
                     <div className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-800 transition-colors">
                       <RadioGroupItem value="no" id="alcohol-no" className="text-amber-500 border-amber-500" />
                       <Label htmlFor="alcohol-no" className="cursor-pointer text-gray-200">
-                        No, I'll stick to mocktails
+                        No, I'll stick to cold drinks
                       </Label>
                     </div>
                   </RadioGroup>
