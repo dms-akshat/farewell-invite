@@ -46,14 +46,14 @@ export default function Home() {
 
           {/* Red carpet image */}
           <div className="mt-6 relative h-16 md:h-20 mx-auto max-w-md overflow-hidden rounded-lg">
-            <Image src="/placeholder.svg?height=100&width=600" alt="Red Carpet" fill className="object-cover" />
+            <Image src="/red_carpet.png?height=100&width=600" alt="Red Carpet" fill className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-transparent to-gray-900"></div>
           </div>
         </header>
 
         <InvitationCard />
 
-        {/* Club photos gallery */}
+        {/* Club photos gallery
         <div className="my-16">
           <h2 className="text-2xl font-bold text-center text-white mb-6 flex items-center justify-center gap-2">
             <StarIcon className="h-5 w-5 text-amber-400" />
@@ -89,7 +89,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="my-16">
           <RsvpForm />
