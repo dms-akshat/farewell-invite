@@ -116,7 +116,7 @@ export default function RsvpForm() {
           RSVP
           <StarIcon className="h-5 w-5" />
         </CardTitle>
-        <CardDescription className="text-amber-100">Please respond by March 23, 2025</CardDescription>
+        <CardDescription className="text-amber-100">Please respond by March 19, 2025</CardDescription>
       </CardHeader>
 
       <CardContent className="pt-6 relative z-10">
